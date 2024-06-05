@@ -1,0 +1,25 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: notification-handler
+  banner:
+    location: tiger-banner.txt
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@localhost:27017/db_notification_history?authSource=admin
+  profiles:
+    active: dev
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+      group-id: notification-handler
+    producer:
+      bootstrap-servers: localhost:9092
+
