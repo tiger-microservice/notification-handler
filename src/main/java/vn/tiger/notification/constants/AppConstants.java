@@ -12,6 +12,7 @@ public class AppConstants {
     public static final String APP_REQUEST_ID = "App-Request-Id";
 
     public static final String MDC_CORRELATION_ID = "x-correlation-id";
+    public static final String NOTIFY_TYPE_KEY = "type";
 
     public static class JwtKey {
         public static final String SCOPE =
