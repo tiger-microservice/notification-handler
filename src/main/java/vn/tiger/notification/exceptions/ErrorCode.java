@@ -12,7 +12,7 @@ public enum ErrorCode {
 
     UNAUTHENTICATED(401, "MSG00006", HttpStatus.UNAUTHORIZED),
     UNCATEGORIZED_EXCEPTION(500, "MSG00007", HttpStatus.INTERNAL_SERVER_ERROR),
-;
+    ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;

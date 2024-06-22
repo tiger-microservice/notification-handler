@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import vn.tiger.notification.constants.enums.NotifyBusinessType;
 import vn.tiger.notification.exceptions.BusinessLogicException;
 import vn.tiger.notification.exceptions.ErrorCode;
+import vn.tiger.notification.services.email.EmailBusinessService;
 import vn.tiger.notification.services.notification.NotifyBusinessService;
 
 import java.util.List;
@@ -13,11 +14,11 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class NotificationHandlerFactory {
+public class EmailHandlerFactory {
 
-    final List<NotifyBusinessService> services;
+    final List<EmailBusinessService> services;
 
-    public NotifyBusinessService getService(NotifyBusinessType type) {
+    public EmailBusinessService getService(NotifyBusinessType type) {
         return services.stream().filter(item -> item.isNotifyBusinessType(type))
                 .findFirst()
                 .orElseThrow(() -> new BusinessLogicException(ErrorCode.BEAN_NOT_DEFINED));

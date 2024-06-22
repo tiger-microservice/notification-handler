@@ -1,4 +1,4 @@
-package vn.tiger.notification.services.handlers;
+package vn.tiger.notification.services.email;
 
 import com.tiger.common.utils.ObjectMapperUtil;
 import lombok.RequiredArgsConstructor;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import vn.tiger.notification.constants.enums.NotificationStatus;
 import vn.tiger.notification.constants.enums.NotifyBusinessType;
 import vn.tiger.notification.dtos.request.NotificationInput;
-import vn.tiger.notification.entities.mongoose.NotificationHistory;
-import vn.tiger.notification.mongoose.NotificationHistoryRepository;
+import vn.tiger.notification.entities.mongoose.EmailSendingHistory;
+import vn.tiger.notification.repositories.mongoose.EmailSendingHistoryRepository;
 
 import java.time.LocalDateTime;
 
@@ -17,9 +17,9 @@ import static vn.tiger.notification.constants.enums.ProcessStatus.SUCCESS;
 @Slf4j
 @Service("NotifyNotSendingService")
 @RequiredArgsConstructor
-public class NotifyNotSendingService  implements NotifyBusinessService {
+public class EmailNotSendingService implements EmailBusinessService {
 
-    final NotificationHistoryRepository notificationHistoryRepository;
+    final EmailSendingHistoryRepository emailSendingHistoryRepository;
 
     @Override
     public boolean isNotifyBusinessType(NotifyBusinessType notifyBusinessType) {
@@ -30,9 +30,8 @@ public class NotifyNotSendingService  implements NotifyBusinessService {
     public void businessLogic(NotificationInput obj) {
         try {
             // cast to object
-            notificationHistoryRepository.save(NotificationHistory.builder()
+            emailSendingHistoryRepository.save(EmailSendingHistory.builder()
                     .id(obj.getId().toString())
-                    .notificationType(obj.getType().name())
                     .messageJson(ObjectMapperUtil.castToString(obj))
                     .receive(obj.getReceive())
                     .status(NotificationStatus.UNREAD.getStatus())

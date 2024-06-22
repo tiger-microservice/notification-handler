@@ -14,16 +14,16 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@Document(collection = "notification_histories")
-@CompoundIndex(name = "notification_receive_type", def="{'receive': 1, 'notification_type': 1, 'process_status': 1}")
+@Document(collection = "sms_sending_histories")
+@CompoundIndex(name = "sms_sending_receive_type", def = "{'receive': 1,  'process_status': 1}")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NotificationHistory {
+public class SmsSendingHistory {
     @Id
     String id;
+    @Field(value = "user_id")
+    String userId;
     @Field(value = "receive")
     String receive;
-    @Field(value = "notification_type")
-    String notificationType;
     @Field(value = "status")
     Integer status = 0; //  0: unread, 1: read
     @Field(value = "process_status")

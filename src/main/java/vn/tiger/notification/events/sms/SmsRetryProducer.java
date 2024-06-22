@@ -1,4 +1,4 @@
-package vn.tiger.notification.events;
+package vn.tiger.notification.events.sms;
 
 import com.tiger.common.utils.ObjectMapperUtil;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +16,11 @@ import java.util.UUID;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class NotificationRetryProducer {
+public class SmsRetryProducer {
 
     final KafkaTemplate<String, String> kafkaTemplate;
 
-    @Value("${spring.kafka.notify-sending-retry:notify-sending-retry}")
+    @Value("${spring.kafka.email-sending-retry:email-sending-retry}")
     public String topicNotifySendingRetry;
 
     public void sendNotifyRetry(NotificationInput msgSender) {

@@ -18,6 +18,7 @@ public class NotificationInput {
     UUID id;
     NotificationType type;
     NotificationPriority priority;
+    String userId;
     String receive;
     ProcessStatus processStatus;
     String errorMsg;

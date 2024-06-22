@@ -1,4 +1,4 @@
-package vn.tiger.notification.services.handlers;
+package vn.tiger.notification.services.notification;
 
 import com.tiger.common.utils.ObjectMapperUtil;
 import lombok.RequiredArgsConstructor;
@@ -7,38 +7,35 @@ import org.springframework.stereotype.Service;
 import vn.tiger.notification.constants.enums.NotificationStatus;
 import vn.tiger.notification.constants.enums.NotifyBusinessType;
 import vn.tiger.notification.dtos.request.NotificationInput;
-import vn.tiger.notification.entities.mongoose.NotificationHistory;
-import vn.tiger.notification.mongoose.NotificationHistoryRepository;
+import vn.tiger.notification.entities.mongoose.NotificationUserReceive;
+import vn.tiger.notification.repositories.mongoose.NotificationUserReceiveRepository;
 
 import java.time.LocalDateTime;
 
-@Slf4j
-@Service("NotifyNotInWhiteListService")
-@RequiredArgsConstructor
-public class NotifyNotInWhiteListService implements NotifyBusinessService {
 
-    final NotificationHistoryRepository notificationHistoryRepository;
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class NotifyUserReceiveService implements NotifyBusinessService {
+
+    final NotificationUserReceiveRepository notificationUserReceiveRepository;
 
     @Override
     public boolean isNotifyBusinessType(NotifyBusinessType notifyBusinessType) {
-        return NotifyBusinessType.A.equals(notifyBusinessType);
+        return NotifyBusinessType.B.equals(notifyBusinessType);
     }
 
     @Override
     public void businessLogic(NotificationInput obj) {
         try {
             // cast to object
-            this.notificationHistoryRepository.save(NotificationHistory.builder()
+            notificationUserReceiveRepository.save(NotificationUserReceive.builder()
                     .id(obj.getId().toString())
-                    .notificationType(obj.getType().name())
                     .messageJson(ObjectMapperUtil.castToString(obj))
-                    .receive(obj.getReceive() == null ? "system" : obj.getReceive())
-                    .status(NotificationStatus.NONE.getStatus())
-                    .retryNumber(0)
-                    .processStatus(obj.getProcessStatus().toString())
-                    .processMessage(obj.getErrorMsg())
+                    .receive(obj.getReceive())
+                    .status(NotificationStatus.UNREAD.getStatus())
                     .createdDate(LocalDateTime.now())
-                    .createdUser("system")
+                    .createdUser(obj.getReceive())
                     .build());
         } catch (Exception e) {
             log.error("[handlerNotifyNotInWhitelist] error {}", e.getMessage(), e);
