@@ -36,7 +36,7 @@ public class NotificationHandlerConsumer {
 
     @KafkaListener(
             topics = {
-                    "${spring.kafka.notify-not-sending:notify-user-receive}",
+                    "${spring.kafka.notify-user-receive:notify-user-receive}",
                     "${spring.kafka.notify-destination-not-in-whitelist:notify-destination-not-in-whitelist}"
             },
             groupId = "notification-handler"
