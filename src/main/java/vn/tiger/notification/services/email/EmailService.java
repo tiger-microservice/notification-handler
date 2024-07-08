@@ -21,7 +21,7 @@ public class EmailService implements NotificationAbstractService {
 
     @Override
     public boolean isNotificationType(NotificationType notificationType) {
-        return NotificationType.SMS.equals(notificationType);
+        return NotificationType.EMAIL.equals(notificationType);
     }
 
     @Override

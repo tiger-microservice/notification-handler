@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import static vn.tiger.notification.constants.enums.ProcessStatus.SUCCESS;
 
 @Slf4j
-@Service("NotifyNotSendingService")
+@Service("EmailNotSendingService")
 @RequiredArgsConstructor
 public class EmailNotSendingService implements EmailBusinessService {
 

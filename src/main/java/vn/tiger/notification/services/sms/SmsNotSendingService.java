@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import static vn.tiger.notification.constants.enums.ProcessStatus.SUCCESS;
 
 @Slf4j
-@Service("NotifyNotSendingService")
+@Service("SmsNotSendingService")
 @RequiredArgsConstructor
 public class SmsNotSendingService implements SmsBusinessService {
 
