@@ -8,7 +8,7 @@ spring:
     location: tiger-banner.txt
   data:
     mongodb:
-      uri: mongodb://admin:admin@localhost:27017/db_notification_history?authSource=admin
+      uri: ${URI_MONGODB_DB}
   profiles:
     active: dev
   kafka:
