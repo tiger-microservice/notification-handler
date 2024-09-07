@@ -1,0 +1,33 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: notification-handler
+  banner:
+    location: tiger-banner.txt
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    show-sql: true
+  data:
+    mongodb:
+      uri: ${URI_MONGODB_DB}
+  profiles:
+    active: dev
+  kafka:
+    streams:
+      bootstrap-servers: ${KAFKA_CONNECTION:localhost:9092}
+      application-id: notification-inbound
+    bootstrap-servers: ${KAFKA_CONNECTION:localhost:9092}
+    consumer:
+      bootstrap-servers: ${KAFKA_CONNECTION:localhost:9092}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+      group-id: notification-handler
+    producer:
+      bootstrap-servers: ${KAFKA_CONNECTION:localhost:9092}
