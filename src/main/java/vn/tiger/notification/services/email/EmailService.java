@@ -9,7 +9,6 @@ import vn.tiger.notification.constants.enums.NotifyBusinessType;
 import vn.tiger.notification.dtos.request.NotificationInput;
 import vn.tiger.notification.factories.EmailHandlerFactory;
 import vn.tiger.notification.services.NotificationAbstractService;
-import vn.tiger.notification.services.notification.NotifyBusinessService;
 
 @Slf4j
 @Service

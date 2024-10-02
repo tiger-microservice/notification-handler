@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import vn.tiger.notification.constants.enums.NotifyBusinessType;
 import vn.tiger.notification.exceptions.BusinessLogicException;
 import vn.tiger.notification.exceptions.ErrorCode;
-import vn.tiger.notification.services.email.EmailBusinessService;
 import vn.tiger.notification.services.sms.SmsBusinessService;
 
 import java.util.List;

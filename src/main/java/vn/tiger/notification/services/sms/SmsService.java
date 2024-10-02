@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import vn.tiger.notification.constants.AppConstants;
 import vn.tiger.notification.constants.enums.NotificationType;
 import vn.tiger.notification.constants.enums.NotifyBusinessType;
 import vn.tiger.notification.dtos.request.NotificationInput;
